@@ -1,5 +1,5 @@
-* (The this Reference): The `this` reference is valid only within nonstatic members of a class or struct.
-
+* (The this Reference): The `this` reference is valid only within nonstatic members of a class or struct.  
+<br>
 
 * (Properties) (Expression-bodied properties (C# 6, C# 7)):
 ```csharp
@@ -20,7 +20,8 @@ public class Stock
 	
 	public decimal PrevPrice {get; private set;}
 }
-```
+```  
+<br>
 
 * (Properties) (Property Initializers (C# 6)):
   Like read-only fields, read-only automatic properties can also be assigned in the type's constructor.
