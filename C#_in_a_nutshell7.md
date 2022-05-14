@@ -137,7 +137,7 @@ public class B : A { public new int counter = 2;}
 ```  
 <br>
 
-* (Inheritance)(Hiding Inherited Members)(new versus override): override calls sub-class implementation when casted to base-class while new calls base-class implementation when casted to base-class.  
+* (Inheritance)(Hiding Inherited Members)(new versus override): `override` calls sub-class implementation when casted to base-class while `new` calls base-class implementation when casted to base-class.  
 <br>
 
 * (Inheritance)(Sealing Functions and Classes): An overridden function member may *seal* its implementation with the sealed keyword to prevent it from being overriden by further subclasses. A class can also be sealed, which implicitly seals all the virtual functions.  
@@ -146,8 +146,84 @@ public class B : A { public new int counter = 2;}
 * (Inheritance)(The base Keyword): The `base` keyword is similar to the `this` keyword. It serves two essential purposes:
 	* Accessing an overriden function member from the subclass.
 	* Calling a base-class constructor
+  
+<br>
+
+* (Inheritance)(Constructors and Inheritance): The base class's constructors are *accessible* to the derived class, but are never automatically *inherited*. A sub-class must hence "redefine" any constructors it wants to expose.
+```csharp
+public class Subclass : Baseclass
+{
+	public Subclass (int x) : base (x) { }
+}
+```  
+<br>
+
+* (Inheritance)(Implicit calling of the parameterless base-class constructor): If a constructor in a subclass omits the `base` keyword, the base type's `parameterless` constructor is implicitly called:
+```csharp
+public class BaseClass
+{
+	public int x;
+	public BaseClass() { X = 1;}
+}
+public class Subclass: BaseClass
+{
+	public SubClass() { Console.WriteLine(X); } // 1
+}
+```  
+<br>
+
+* (Inheritance)(Constructor and field initialization order):
+	* From subclass to base class:
+		* Fields are initialized.
+		* Arguments to base-class constructor calls are evaluated.
+	* From base class to subclass
+		* Constructor bodies execute.
+```csharp
+public class B
+{
+	int x = 1; // Exec 3rd
+	public B(int x)
+	{
+		... // Exec 4th
+	}
+}
+
+public class D : B
+{
+	int y = 1; // Exec 1st
+	public D(int x)
+		: base (x + 1) // Exec 2nd
+	{
+		... // Exec 5th
+	}
+}
+```  
+<br>
+
+* (The object Type): `object` is the ultimate base class for all types. Any type can be upcast to object.  
+<br>
+
+* (The object Type)(Boxing and Unboxing): Boxing is the act of converting a value-type to a reference-type instance. The reference type may be either `object` or an interface. Unboxing does the reverse. Unboxing requires an explicit cast, the cast type must match the object type exactly.
+```csharp
+	object obj = 9;
+	long x = (long) obj; // InvalidCastException
+	
+	object obj = 3.5; // inferred as type double
+	int x = (int) (double) obj; // x is now 3
+```  
+<br>
+
+* (The object Type)(Copying semantics  of boxing and unboxing): Boxing *copies* the value-type instance into the new object, and unboxing *copies* the contents of the object back into a value-type instance. 
+```csharp
+int i = 3;
+object boxed = i;
+i = 5;
+Console.WriteLine(boxed); // 3
+```  
+<br>
 
 
+	
 
 
 
