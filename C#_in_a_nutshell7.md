@@ -10,6 +10,7 @@ public decimal Worth
 }
 ```  
 <br>
+
 * (Properties) (Automatic properties):
   The compiler auto generates a private `backing` field of a compiler-generated name that cannot be referred to. The `set` accessor can be marked `private` or `protected`.
 ```csharp
