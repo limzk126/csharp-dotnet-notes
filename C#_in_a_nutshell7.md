@@ -21,8 +21,8 @@ public class Stock
 	public decimal PrevPrice {get; private set;}
 }
 ```
-
-
+  
+  
 * (Properties) (Property Initializers (C# 6)):
   Like read-only fields, read-only automatic properties can also be assigned in the type's constructor.
 ```csharp
