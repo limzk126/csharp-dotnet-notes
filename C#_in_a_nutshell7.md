@@ -90,7 +90,62 @@ string name = nameof (StringBuilder.Length); // name is "Length".
 ```  
 <br>
 
+* (Inheritance): A class can inherit from only a single class, but can itself be inherited by many classes.  
+<br>
 
+* (Inheritance)(Casting and Reference Conversions): Upcasting and downcasting between compatible reference types performs reference conversions: a new reference is (logically) created that points to the *same* object. An upcast always succeeds; a downcast succeeeds only if the object is suitably typed.  
+<br>
+
+* (Inheritance)(Casting and Reference Conversions): A downcast requires an explicit cast because it can potentially fail at runtime.  
+<br>
+
+* (Inheritance)(Casting and Reference Conversions)(The as operator): The `as` operator performs a downcast that evalutates to `null` (rather than throwing an exception) if the downcast fails
+```csharp
+Asset a = new Asset();
+Stock s = a as Stock;
+```  
+<br> 
+
+* (Inheritance)(Casting and Reference Conversions)(The as operator): The `as` operator cannot perform *custom conversions* and it cannot do numeric conversions.
+```csharp
+long x = 3 as long;
+```  
+<br>
+
+* (Inheritance)(Casting and Reference Conversions)(The is operator): The `is` operator tests whether a reference conversion would succeed; in other words, whether an object derives from a specified class (or implements an interface).
+```sharp
+if (a is stock)
+	Console.WriteLine(((Stock)a).SharesOwned);
+```  
+<br>
+
+* (Inheritance)(Casting and Reference Conversions)(The is operator and pattern variables (C# 7)): From C# 7, you can introduce a variable while using the `is` operator:
+```csharp
+	if (a is Stock s) {
+		Console.WriteLine(s.SharesOwned);
+	}
+```  
+<br>
+
+* (Inheritance)(Virtual Function Members): A function marked as `virtual` can be overriden by subclasses wanting to provide a specialized implementations. A subclass overrides a virtual method by applying the `override` modifier.  
+<br>
+
+* (Inheritance)(Hiding Inherited Members): The `new` modifier suppresses the compiler warning that would otherwise result from re-declaring a similar member. This is done if you want to hide a base class member deliberately.
+```csharp
+public class A { public int counter = 1;}
+public class B : A { public new int counter = 2;}
+```  
+<br>
+
+* (Inheritance)(Hiding Inherited Members)(new versus override): override calls sub-class implementation when casted to base-class while new calls base-class implementation when casted to base-class.  
+<br>
+
+* (Inheritance)(Sealing Functions and Classes): An overridden function member may *seal* its implementation with the sealed keyword to prevent it from being overriden by further subclasses. A class can also be sealed, which implicitly seals all the virtual functions.  
+<br>
+
+* (Inheritance)(The base Keyword): The `base` keyword is similar to the `this` keyword. It serves two essential purposes:
+	* Accessing an overriden function member from the subclass.
+	* Calling a base-class constructor
 
 
 
