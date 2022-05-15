@@ -293,7 +293,8 @@ public interface IUndoable { void Undo(); }
  * types that implement IRedoable must also implement the members of IUndoable.
  */
 public interface IRedoable : IUndoable { void Redo(); }
-```
+```  
+<br>
 
 * (Interfaces)(Explicit Interface Implementation): Implementating multiple interfaces can sometimes result in a collision between member signatures.
 ```csharp
