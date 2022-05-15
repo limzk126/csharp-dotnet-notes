@@ -222,14 +222,50 @@ Console.WriteLine(boxed); // 3
 ```  
 <br>
 
-
-	
-
-
+* (The object Type)(The GetType Method and typeof Operator): `GetType` is evaluated at runtime while `typeof` is evaluated statically at compile time.  
+<br>
 
 
+* (The object type)(The ToString Method): The ToString method returns the default textual representation of a type instance. The method is overriden by all built-in types. For custom types, if the method is not overriden, it returns the type name.  
+<br>
 
+* (Structs):
+	* `struct` vs `class` key differences
+		* A `struct` is a value type, whereas a class is a reference type.
+		* A struct does not support inheritance (other than implicitly deriving from `object`, or more precisely, `System.ValueType`).
+	* A `struct` can have all the members a class can, except the following:
+		* A parameterless constructor
+		* Field initializers
+		* A finalizer
+		* `Virtual` or `protected` members
+  
+<br>
 
+* (Structs)(Struct Construction Semantics):
+	* The construction semantics of a struct are as follows:
+		* A parameterless constructor that you can't override implicitly exists. This performs a bitwise-zeroing of its fields.
+		* When you define a struct constructor, you must explicitly assign every field.
+```csharp
+public struct Point
+{
+	int x = 1; // Illegal: field initializer
+	int y;
+	public Point() {} // Illegal: parameterless constructor
+	public Point(int x) {this.x = x;} // Illegal: must assign field y
+}
+```  
+<br>
+
+* (Access Modifiers)(Accessibility Capping): A type caps the accessibility of its declared members. The most common example of capping is when you have an `internal` type with `public` members.
+```csharp
+/*
+ * C's (default) internal accessibility caps Foo's accessibility to internal.
+ * This is commonly used to make it easier for refactoring, should C later be changed
+ * to public.
+ */
+class C { public void Foo() {}}
+```  
+<br>
 
 
 
