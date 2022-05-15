@@ -276,10 +276,11 @@ class C { public void Foo() {}}
 * (Interfaces):
 	* `Interface` is special compared to a `class` in the following ways:
 		* `Interface` members are *all implicitly abstract*. In contrast, a class can provide both abstract members and concrete members with implementations.'
-	* A class (or struct) can implement *multiple* interface. In contrast, a class can inherit from only a *single* class.  
+		* A class (or struct) can implement *multiple* interface. In contrast, a class can inherit from only a *single* class.  
 <br>
 
-* (Interfaces): Interface members are always implicitly public and cannot declare an access modifier. Implementing an interface means providing a `public` implementation for all its members.
+* (Interfaces): Interface members are always implicitly public and cannot declare an access modifier. Implementing an interface means providing a `public` implementation for all its members.  
+<br>
 
 * (Interfaces): You can implicitly cast an object to any interface that it implements.  
 <br>
