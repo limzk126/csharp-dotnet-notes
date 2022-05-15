@@ -268,5 +268,62 @@ class C { public void Foo() {}}
 <br>
 
 
+* (Access Modifiers)(Restrictions on Access Modifiers):
+	* When overriding a base class function, accessibility must be identical on the overridden function. (Exception is when overriding `protected internal` method in another assembly, in which case override must simply be `protected`).
+	* The compiler prevents any inconsistent use of access modifiers. For example, a subclass itself can be less accessible than a base class, but not more.  
+<br>
 
+* (Interfaces):
+	* `Interface` is special compared to a `class` in the following ways:
+		* `Interface` members are *all implicitly abstract*. In contrast, a class can provide both abstract members and concrete members with implementations.'
+	* A class (or struct) can implement *multiple* interface. In contrast, a class can inherit from only a *single* class.  
+<br>
+
+* (Interfaces): Interface members are always implicitly public and cannot declare an access modifier. Implementing an interface means providing a `public` implementation for all its members.
+
+* (Interfaces): You can implicitly cast an object to any interface that it implements.  
+<br>
+
+* (Interfaces)(Extending an Interface): Interfaces may derive from other interfaces.
+```csharp
+public interface IUndoable { void Undo(); }
+
+/*
+ * IRedoable "inherits" all the members of IUndoable. In other words,
+ * types that implement IRedoable must also implement the members of IUndoable.
+ */
+public interface IRedoable : IUndoable { void Redo(); }
+```
+
+* (Interfaces)(Explicit Interface Implementation): Implementating multiple interfaces can sometimes result in a collision between member signatures.
+```csharp
+interface I1 { void Foo(); }
+interface I2 { int Foo(); }
+
+public class Widget : I1, I2
+{
+	public void Foo()
+	{
+		Console.WriteLine ("Widget's implementation of I1.Foo");
+	}
+	
+	int I2.Foo()
+	{
+		Console.WriteLine ("Widget's implementation of I2.Foo");
+		return 42;
+	}
+}
+```
+```csharp
+/*
+ * Because I1 and I2 have conflicting Foo signatures, Widget explicitly implements
+ * I2's Foo. The only way to call an explicitly implemented member is to cast to its
+ * interface.
+ */
+Widget w = new Widget();
+w.Foo(); // Widget's implementation of I1.Foo
+((I1)w).Foo(); // Widget's implementation of I1.Foo
+((I2)w).Foo(); // Widget's implementation of I2.Foo
+```  
+<br>
 
